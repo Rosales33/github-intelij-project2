@@ -41,6 +41,14 @@ public class FullPatient {
     private int scoreSeverity;
     private Severity severity;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public enum Sex{
         MALE, FEMALE;
     }
