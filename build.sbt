@@ -14,5 +14,4 @@ libraryDependencies ++=Seq("com.typesafe.play" %% "play" % "2.8.18")
 libraryDependencies ++= Seq(
   "org.drools" % "drools-core" % "7.65.0.Final",
   "org.drools" % "drools-compiler" % "7.65.0.Final",
-  "org.drools" % "drools-xml-support" % "7.65.0.Final",
   "org.drools" % "drools-mvel" % "7.65.0.Final")

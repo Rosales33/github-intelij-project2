@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import services.EmployeeService;
 import utils.ApplicationUtil;
@@ -16,8 +17,8 @@ public class EmployeeController extends Controller{
 
     private static final Logger logger = LoggerFactory.getLogger("controller");
 
-    public Result create() {
-        JsonNode json = request().body().asJson();
+    public Result create(Http.Request request) {
+        JsonNode json = request.body().asJson();
         if (json == null) {
             return badRequest(ApplicationUtil.createResponse("Expecting JSON data", false));
         }
@@ -27,9 +28,9 @@ public class EmployeeController extends Controller{
         return created(ApplicationUtil.createResponse(jsonObject, true));
     }
 
-    public Result update() {
+    public Result update(Http.Request request) {
         logger.debug("In EmployeeController.update()");
-        JsonNode json = request().body().asJson();
+        JsonNode json = request.body().asJson();
         if (json == null) {
             return badRequest(ApplicationUtil.createResponse("Expecting Json data", false));
         }

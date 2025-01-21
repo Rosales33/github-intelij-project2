@@ -11,8 +11,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 # APIs in EmployeeController
 GET     /employee              controllers.EmployeeController.listEmployees()
 GET     /employee/:id          controllers.EmployeeController.retrieve(id:Int)
-POST    /employee              controllers.EmployeeController.create()
-PUT     /employee              controllers.EmployeeController.update()
+POST    /employee              controllers.EmployeeController.create(request:Request)
+PUT     /employee              controllers.EmployeeController.update(request:Request)
 DELETE  /employee/:id          controllers.EmployeeController.delete(id:Int)
 
 # Map static resources from the /public folder to the /assets URL path

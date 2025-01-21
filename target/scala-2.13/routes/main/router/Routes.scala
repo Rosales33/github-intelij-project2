@@ -17,6 +17,8 @@ class Routes(
   HomeController_0: controllers.HomeController,
   // @LINE:9
   Assets_1: controllers.Assets,
+  // @LINE:12
+  EmployeeController_2: controllers.EmployeeController,
   val prefix: String
 ) extends GeneratedRouter {
 
@@ -25,13 +27,15 @@ class Routes(
     // @LINE:6
     HomeController_0: controllers.HomeController,
     // @LINE:9
-    Assets_1: controllers.Assets
-  ) = this(errorHandler, HomeController_0, Assets_1, "/")
+    Assets_1: controllers.Assets,
+    // @LINE:12
+    EmployeeController_2: controllers.EmployeeController
+  ) = this(errorHandler, HomeController_0, Assets_1, EmployeeController_2, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_0, Assets_1, prefix)
+    new Routes(errorHandler, HomeController_0, Assets_1, EmployeeController_2, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -40,6 +44,12 @@ class Routes(
 
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.listEmployees()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.retrieve(id:Int)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.create()"""),
+    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.update()"""),
+    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.delete(id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -84,6 +94,114 @@ class Routes(
     )
   )
 
+  // @LINE:12
+  private[this] lazy val controllers_EmployeeController_listEmployees2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee")))
+  )
+  private[this] lazy val controllers_EmployeeController_listEmployees2_invoker = createInvoker(
+    EmployeeController_2.listEmployees(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "listEmployees",
+      Nil,
+      "GET",
+      this.prefix + """employee""",
+      """ APIs in EmployeeController""",
+      Seq()
+    )
+  )
+
+  // @LINE:13
+  private[this] lazy val controllers_EmployeeController_retrieve3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_EmployeeController_retrieve3_invoker = createInvoker(
+    EmployeeController_2.retrieve(fakeValue[Int]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "retrieve",
+      Seq(classOf[Int]),
+      "GET",
+      this.prefix + """employee/""" + "$" + """id<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:14
+  private[this] lazy val controllers_EmployeeController_create4_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee")))
+  )
+  private[this] lazy val controllers_EmployeeController_create4_invoker = createInvoker(
+    EmployeeController_2.create(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "create",
+      Nil,
+      "POST",
+      this.prefix + """employee""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:15
+  private[this] lazy val controllers_EmployeeController_update5_route = Route("PUT",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee")))
+  )
+  private[this] lazy val controllers_EmployeeController_update5_invoker = createInvoker(
+    EmployeeController_2.update(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "update",
+      Nil,
+      "PUT",
+      this.prefix + """employee""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:16
+  private[this] lazy val controllers_EmployeeController_delete6_route = Route("DELETE",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_EmployeeController_delete6_invoker = createInvoker(
+    EmployeeController_2.delete(fakeValue[Int]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "delete",
+      Seq(classOf[Int]),
+      "DELETE",
+      this.prefix + """employee/""" + "$" + """id<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:19
+  private[this] lazy val controllers_Assets_versioned7_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_Assets_versioned7_invoker = createInvoker(
+    Assets_1.versioned(fakeValue[String], fakeValue[Asset]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Assets",
+      "versioned",
+      Seq(classOf[String], classOf[Asset]),
+      "GET",
+      this.prefix + """assets/""" + "$" + """file<.+>""",
+      """ Map static resources from the /public folder to the /assets URL path""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -97,6 +215,42 @@ class Routes(
     case controllers_Assets_versioned1_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
         controllers_Assets_versioned1_invoker.call(Assets_1.versioned(path, file))
+      }
+  
+    // @LINE:12
+    case controllers_EmployeeController_listEmployees2_route(params@_) =>
+      call { 
+        controllers_EmployeeController_listEmployees2_invoker.call(EmployeeController_2.listEmployees())
+      }
+  
+    // @LINE:13
+    case controllers_EmployeeController_retrieve3_route(params@_) =>
+      call(params.fromPath[Int]("id", None)) { (id) =>
+        controllers_EmployeeController_retrieve3_invoker.call(EmployeeController_2.retrieve(id))
+      }
+  
+    // @LINE:14
+    case controllers_EmployeeController_create4_route(params@_) =>
+      call { 
+        controllers_EmployeeController_create4_invoker.call(EmployeeController_2.create())
+      }
+  
+    // @LINE:15
+    case controllers_EmployeeController_update5_route(params@_) =>
+      call { 
+        controllers_EmployeeController_update5_invoker.call(EmployeeController_2.update())
+      }
+  
+    // @LINE:16
+    case controllers_EmployeeController_delete6_route(params@_) =>
+      call(params.fromPath[Int]("id", None)) { (id) =>
+        controllers_EmployeeController_delete6_invoker.call(EmployeeController_2.delete(id))
+      }
+  
+    // @LINE:19
+    case controllers_Assets_versioned7_route(params@_) =>
+      call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
+        controllers_Assets_versioned7_invoker.call(Assets_1.versioned(path, file))
       }
   }
 }

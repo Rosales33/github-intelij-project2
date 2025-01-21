@@ -1,0 +1,8 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/pablorosalesrodriguez/play-drools/app/controllers/EmployeeController.java:20:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   method request()[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class controllers.EmployeeController[0m
+[0m[[0m[31merror[0m] [0m[0mrequest[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/pablorosalesrodriguez/play-drools/app/controllers/EmployeeController.java:32:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   method request()[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class controllers.EmployeeController[0m
+[0m[[0m[31merror[0m] [0m[0mrequest[0m
