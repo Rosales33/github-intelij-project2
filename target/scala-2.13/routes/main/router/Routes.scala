@@ -47,8 +47,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.listEmployees()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.retrieve(id:Int)"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.create()"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.update()"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.create(request:Request)"""),
+    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.update(request:Request)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.delete(id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
@@ -135,12 +135,14 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee")))
   )
   private[this] lazy val controllers_EmployeeController_create4_invoker = createInvoker(
-    EmployeeController_2.create(),
+    
+    (req:play.mvc.Http.Request) =>
+      EmployeeController_2.create(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.EmployeeController",
       "create",
-      Nil,
+      Seq(classOf[play.mvc.Http.Request]),
       "POST",
       this.prefix + """employee""",
       """""",
@@ -153,12 +155,14 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("employee")))
   )
   private[this] lazy val controllers_EmployeeController_update5_invoker = createInvoker(
-    EmployeeController_2.update(),
+    
+    (req:play.mvc.Http.Request) =>
+      EmployeeController_2.update(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.EmployeeController",
       "update",
-      Nil,
+      Seq(classOf[play.mvc.Http.Request]),
       "PUT",
       this.prefix + """employee""",
       """""",
@@ -232,13 +236,15 @@ class Routes(
     // @LINE:14
     case controllers_EmployeeController_create4_route(params@_) =>
       call { 
-        controllers_EmployeeController_create4_invoker.call(EmployeeController_2.create())
+        controllers_EmployeeController_create4_invoker.call(
+          req => EmployeeController_2.create(req))
       }
   
     // @LINE:15
     case controllers_EmployeeController_update5_route(params@_) =>
       call { 
-        controllers_EmployeeController_update5_invoker.call(EmployeeController_2.update())
+        controllers_EmployeeController_update5_invoker.call(
+          req => EmployeeController_2.update(req))
       }
   
     // @LINE:16

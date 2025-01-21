@@ -55,12 +55,6 @@ package controllers {
     }
 
   
-    // @LINE:14
-    def create(): Call = {
-      
-      Call("POST", _prefix + { _defaultPrefix } + "employee")
-    }
-  
     // @LINE:16
     def delete(id:Int): Call = {
       
@@ -73,16 +67,22 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "employee")
     }
   
+    // @LINE:15
+    def update(): Call = {
+      
+      Call("PUT", _prefix + { _defaultPrefix } + "employee")
+    }
+  
     // @LINE:13
     def retrieve(id:Int): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "employee/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
     }
   
-    // @LINE:15
-    def update(): Call = {
+    // @LINE:14
+    def create(): Call = {
       
-      Call("PUT", _prefix + { _defaultPrefix } + "employee")
+      Call("POST", _prefix + { _defaultPrefix } + "employee")
     }
   
   }

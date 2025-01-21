@@ -12,8 +12,15 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /employee              controllers.EmployeeController.listEmployees()
 GET     /employee/:id          controllers.EmployeeController.retrieve(id:Int)
 POST    /employee              controllers.EmployeeController.create(request:Request)
-PUT     /employee              controllers.EmployeeController.update(request:Request)
+PUT     /employee/:id          controllers.EmployeeController.update(request:Request)
 DELETE  /employee/:id          controllers.EmployeeController.delete(id:Int)
+
+# APIs in PatientController
+GET     /patient              controllers.PatientController.listPatients()
+GET     /patient/:id          controllers.PatientController.retrieve(id:Int)
+POST    /patient              controllers.PatientController.create(request:Request)
+PUT     /patient/:id          controllers.PatientController.update(request:Request)
+DELETE  /patient/:id          controllers.PatientController.delete(id:Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

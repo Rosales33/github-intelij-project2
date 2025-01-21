@@ -62,16 +62,6 @@ package controllers.javascript {
     }
 
   
-    // @LINE:14
-    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.create",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
-        }
-      """
-    )
-  
     // @LINE:16
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.EmployeeController.delete",
@@ -92,6 +82,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:15
+    def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.EmployeeController.update",
+      """
+        function() {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
+        }
+      """
+    )
+  
     // @LINE:13
     def retrieve: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.EmployeeController.retrieve",
@@ -102,12 +102,12 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:15
-    def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.update",
+    // @LINE:14
+    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.EmployeeController.create",
       """
         function() {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
         }
       """
     )
