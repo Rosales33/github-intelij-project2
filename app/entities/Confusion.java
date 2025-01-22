@@ -4,7 +4,8 @@ public class Confusion {
     private int patientId;
     private boolean confusion;
 
-    public Confusion(boolean confusion) {
+    public Confusion(int patientId, boolean confusion) {
+        this.patientId = patientId;
         this.confusion = confusion;
     }
 

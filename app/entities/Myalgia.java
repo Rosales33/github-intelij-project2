@@ -4,7 +4,8 @@ public class Myalgia {
     private int patientId;
     private boolean myalgia;
 
-    public Myalgia(boolean myalgia) {
+    public Myalgia(int patientId, boolean myalgia) {
+        this.patientId = patientId;
         this.myalgia = myalgia;
     }
 

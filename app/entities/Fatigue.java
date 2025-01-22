@@ -4,7 +4,8 @@ public class Fatigue {
     private int patientId;
     private boolean fatigue;
 
-    public Fatigue(boolean fatigue) {
+    public Fatigue(int patientId, boolean fatigue) {
+        this.patientId = patientId;
         this.fatigue = fatigue;
     }
 

@@ -2,4 +2,5 @@
 [0m[[0m[0mdebug[0m] [0m[0m	(/Users/pablorosalesrodriguez/play-drools/conf/logback.xml,/Users/pablorosalesrodriguez/play-drools/target/scala-2.13/classes/logback.xml)[0m
 [0m[[0m[0mdebug[0m] [0m[0m	(/Users/pablorosalesrodriguez/play-drools/conf/application.conf,/Users/pablorosalesrodriguez/play-drools/target/scala-2.13/classes/application.conf)[0m
 [0m[[0m[0mdebug[0m] [0m[0m	(/Users/pablorosalesrodriguez/play-drools/conf/routes,/Users/pablorosalesrodriguez/play-drools/target/scala-2.13/classes/routes)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/pablorosalesrodriguez/play-drools/conf/drools/pneumonia.drl,/Users/pablorosalesrodriguez/play-drools/target/scala-2.13/classes/drools/pneumonia.drl)[0m
 [0m[[0m[0mdebug[0m] [0m[0m	(/Users/pablorosalesrodriguez/play-drools/conf/META-INF/kmodule.xml,/Users/pablorosalesrodriguez/play-drools/target/scala-2.13/classes/META-INF/kmodule.xml)[0m

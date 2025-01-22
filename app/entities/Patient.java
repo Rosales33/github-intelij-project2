@@ -124,12 +124,4 @@ public class Patient {
         public void setProgressiveRespiratoryDistress(boolean progressiveRespiratoryDistress) {
             this.progressiveRespiratoryDistress = progressiveRespiratoryDistress;
         }
-
-        public enum Sex{
-            MALE, FEMALE;
-        }
-
-        public enum Progression{
-            RAPID, GRADUAL;
-        }
 }

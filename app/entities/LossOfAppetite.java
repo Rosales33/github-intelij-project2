@@ -4,7 +4,8 @@ public class LossOfAppetite {
     private int patientId;
     private boolean lossOfAppetite;
 
-    public LossOfAppetite(boolean lossOfAppetite) {
+    public LossOfAppetite(int patientId, boolean lossOfAppetite) {
+        this.patientId = patientId;
         this.lossOfAppetite = lossOfAppetite;
     }
 

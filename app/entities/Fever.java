@@ -5,7 +5,10 @@ public class Fever {
     private boolean fever;
     private boolean elevatedFever;
 
-    public Fever() {
+    public Fever(int patientId, boolean fever, boolean elevatedFever) {
+        this.patientId = patientId;
+        this.fever = fever;
+        this.elevatedFever = elevatedFever;
     }
 
     public boolean isFever() {

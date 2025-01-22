@@ -3,6 +3,8 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.FullPatient;
+import entities.Progression;
+import entities.Sex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import play.libs.Json;
@@ -28,13 +30,13 @@ public class PatientController extends Controller{
         return created(ApplicationUtil.createResponse(jsonObject, true));
     }
 
-    public Result update(Http.Request request) {
+    public Result update(Http.Request request, int id) {
         logger.debug("In PatientController.update()");
         JsonNode json = request.body().asJson();
         if (json == null) {
             return badRequest(ApplicationUtil.createResponse("Expecting Json data", false));
         }
-        FullPatient patient = PatientService.getInstance().updatePatient(Json.fromJson(json, FullPatient.class));
+        FullPatient patient = PatientService.getInstance().updatePatient(Json.fromJson(json, FullPatient.class), id);
         logger.debug("In PatientController.update(), patient is: {}",patient);
         if (patient == null) {
             return notFound(ApplicationUtil.createResponse("Employee not found", false));
@@ -70,5 +72,11 @@ public class PatientController extends Controller{
             return notFound(ApplicationUtil.createResponse("Patient with id:" + id + " not found", false));
         }
         return ok(ApplicationUtil.createResponse("Patient with id:" + id + " deleted", true));
+    }
+
+    public Result createPatientPrueba() {
+        FullPatient patient = new FullPatient(82, Sex.FEMALE,39,true,true,true,true,true,true, Progression.RAPID,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true);
+        JsonNode jsonObject = Json.toJson(patient);
+        return created(ApplicationUtil.createResponse(jsonObject, true));
     }
 }

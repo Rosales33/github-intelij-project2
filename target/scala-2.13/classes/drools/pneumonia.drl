@@ -1,0 +1,547 @@
+import entities.Patient
+import entities.Tachypnea
+import entities.Uremia
+import entities.ChestPain
+import entities.Confusion
+import entities.Cough
+import entities.Cyanosis
+import entities.Diagnose
+import entities.Dyspnea
+import entities.Fatigue
+import entities.Fever
+import entities.Hypotension
+import entities.LossOfAppetite
+import entities.Myalgia
+import entities.SweatingOrChills
+import entities.Tachycardia
+
+rule "Set fever if temperature is greater than 37"
+salience 25
+dialect "mvel"
+when
+    $patient: Patient(temperature > 37)
+    $fever: Fever(patientId == $patient.id)
+then
+    modify($fever) {
+        setFever(true)
+    }
+    System.out.println("Patient " + $patient.id + " has fever due to temperature > 37°C.");
+end
+
+rule "Set elevated fever if temperature is greater than 38"
+salience 25
+dialect "mvel"
+when
+    $patient: Patient(temperature > 38)
+    $fever: Fever(patientId == $patient.id)
+then
+    modify($fever) {
+        setElevatedFever(true)
+    }
+    System.out.println("Patient " + $patient.id + " has elevated fever due to temperature > 38°C.");
+end
+
+rule "Increase score if patient has fever"
+salience 20
+dialect "mvel"
+when
+    $fever: Fever(fever == true)
+    $diagnose: Diagnose(patientId == $fever.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $fever.patientId + " due to fever.");
+end
+
+rule "Increase score for patients over 65 or under 2 years old"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(age > 65 || age < 2)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 2)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to age > 65 or < 2 years.");
+end
+
+rule "Increase score if patient is pregnant and female"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(pregnant == true, sex == Patient.Sex.FEMALE)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to pregnancy and female sex.");
+end
+
+rule "Increase score if neurological condition affects swallowing"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(neurologicalConditionAffectingSwallowing == true)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to neurological condition affecting swallowing.");
+end
+
+rule "Increase score if underlying heart or pulmonary conditions"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(underlyingHeartOrPulmonaryConditions == true)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 2)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to underlying heart or pulmonary conditions.");
+end
+
+rule "Increase score if patient is hospitalized"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(hospitalized == true)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to hospitalization.");
+end
+
+rule "Increase score if patient is a smoker"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(smoker == true)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to smoking.");
+end
+
+rule "Increase score if patient has a weakened immune system"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(weakenedInmuneSystem == true)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 2)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to weakened immune system.");
+end
+
+rule "Increase score if patient has chest pain"
+salience 20
+dialect "mvel"
+when
+    $chestPain: ChestPain(chestPain == true)
+    $diagnose: Diagnose(patientId == $chestPain.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $chestPain.patientId + " due to chest pain.");
+end
+
+rule "Increase score if patient has cough"
+salience 20
+dialect "mvel"
+when
+    $cough: Cough(patientId != null, cough == true)
+    $diagnose: Diagnose(patientId == $cough.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $cough.patientId + " due to cough.");
+end
+
+rule "Increase score if patient has cyanosis"
+salience 20
+dialect "mvel"
+when
+    $cyanosis: Cyanosis(patientId != null, cyanosis == true) // Verificar si el paciente tiene cianosis
+    $diagnose: Diagnose(patientId == $cyanosis.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 2)
+    }
+    System.out.println("Score increased for patient " + $cyanosis.patientId + " due to cyanosis.");
+end
+
+rule "Increase score if patient has dyspnea"
+salience 20
+dialect "mvel"
+when
+    $dyspnea: Dyspnea(patientId != null, dyspnea == true)
+    $diagnose: Diagnose(patientId == $dyspnea.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 2)
+    }
+    System.out.println("Score increased for patient " + $dyspnea.patientId + " due to dyspnea.");
+end
+
+rule "Increase score if patient has fatigue"
+salience 20
+dialect "mvel"
+when
+    $fatigue: Fatigue(patientId != null, fatigue == true)
+    $diagnose: Diagnose(patientId == $fatigue.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $fatigue.patientId + " due to fatigue.");
+end
+
+rule "Increase score if patient has loss of appetite"
+salience 20
+dialect "mvel"
+when
+    $lossOfAppetite: LossOfAppetite(patientId != null, lossOfAppetite == true)
+    $diagnose: Diagnose(patientId == $lossOfAppetite.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $lossOfAppetite.patientId + " due to loss of appetite.");
+end
+
+rule "Increase score if patient has sweating or chills"
+salience 20
+dialect "mvel"
+when
+    $sweatingOrChills: SweatingOrChills(patientId != null, sweatingOrChills == true)
+    $diagnose: Diagnose(patientId == $sweatingOrChills.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $sweatingOrChills.patientId + " due to sweating or chills.");
+end
+
+rule "Increase score if patient has tachycardia"
+salience 20
+dialect "mvel"
+when
+    $tachycardia: Tachycardia(patientId != null, tachycardia == true)
+    $diagnose: Diagnose(patientId == $tachycardia.patientId)
+then
+    modify($diagnose) {
+        setScore($diagnose.getScore() + 1)
+    }
+    System.out.println("Score increased for patient " + $tachycardia.patientId + " due to tachycardia.");
+end
+
+rule "Mark pneumonia if score is greater than 12"
+salience 15
+dialect "mvel"
+when
+    $diagnose: Diagnose(score > 12)
+then
+    modify($diagnose) {
+        setPneumonia(true)
+    }
+    System.out.println("Pneumonia marked for patient " + $diagnose.getPatientId() + " due to score greater than 12.");
+end
+
+
+
+rule "Increase scoreType if patient has productive cough"
+salience 10
+dialect "mvel"
+when
+    $cough: Cough(cough == true, productive == true)
+    $diagnose: Diagnose(patientId == $cough.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 2)
+    }
+    System.out.println("ScoreType increased for patient " + $cough.patientId + " due to productive cough.");
+end
+
+rule "Increase scoreType if patient has elevated fever"
+salience 10
+dialect "mvel"
+when
+    $fever: Fever(fever == true, elevatedFever == true)
+    $diagnose: Diagnose(patientId == $fever.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 2)
+    }
+    System.out.println("ScoreType increased for patient " + $fever.patientId + " due to elevated fever.");
+end
+
+rule "Increase scoreType if patient has chest pain"
+salience 10
+dialect "mvel"
+when
+    $chestPain: ChestPain(chestPain == true)
+    $diagnose: Diagnose(patientId == $chestPain.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 1)
+    }
+    System.out.println("ScoreType increased for patient " + $chestPain.patientId + " due to chest pain.");
+end
+
+rule "Increase scoreType if patient has confusion"
+salience 10
+dialect "mvel"
+when
+    $confusion: Confusion(confusion == true)
+    $diagnose: Diagnose(patientId == $confusion.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 1)
+    }
+    System.out.println("ScoreType increased for patient " + $confusion.patientId + " due to confusion.");
+end
+
+rule "Increase scoreType if patient has foul smelling or porulent sputum"
+salience 10
+dialect "mvel"
+when
+    $cough: Cough(cough == true, foulSmellingOrPorulentSputum == true)
+    $diagnose: Diagnose(patientId == $cough.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 2)
+    }
+    System.out.println("ScoreType increased for patient " + $cough.patientId + " due to foul smelling or porulent sputum.");
+end
+
+rule "Increase scoreType if patient has rapid progression of symptoms"
+salience 10
+dialect "mvel"
+when
+    $patient: Patient(progression == Patient.Progression.RAPID)
+    $diagnose: Diagnose(patientId == $patient.id, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() + 2)
+    }
+    System.out.println("Score increased for patient " + $patient.id + " due to rapid progression of symptoms.");
+end
+
+rule "Decrease scoreType if patient has gradual progression of symptoms"
+salience 10
+dialect "mvel"
+when
+    $patient: Patient(progression == Patient.Progression.GRADUAL)
+    $diagnose: Diagnose(patientId == $patient.id, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 1)
+    }
+    System.out.println("Score decreases for patient " + $patient.id + " due to gradual progression of symptoms.");
+end
+
+rule "Decrease score if patient has moderated fever"
+salience 10
+dialect "mvel"
+when
+    $fever: Fever(fever == true, elevatedFever == false)
+    $diagnose: Diagnose(patientId == $fever.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 2)
+    }
+    System.out.println("Score decreased for patient " + $fever.patientId + " due to moderated fever.");
+end
+
+rule "Decrease scoreType if patient doesn't have productive cough"
+salience 10
+dialect "mvel"
+when
+    $cough: Cough(cough == true, productive == false)
+    $diagnose: Diagnose(patientId == $cough.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 2)
+    }
+    System.out.println("ScoreType decrease for patient " + $cough.patientId + " due to no productive cough.");
+end
+
+rule "Decrease scoreType if patient has myalgia"
+salience 10
+dialect "mvel"
+when
+    $myalgia: Myalgia(myalgia == true)
+    $diagnose: Diagnose(patientId == $myalgia.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 1)
+    }
+    System.out.println("ScoreType decreased for patient " + $myalgia.patientId + " due to myalgia.");
+end
+
+rule "Decrease scoreType if patient has fatigue"
+salience 10
+dialect "mvel"
+when
+    $fatigue: Fatigue(patientId != null, fatigue == true)
+    $diagnose: Diagnose(patientId == $fatigue.patientId)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 1)
+    }
+    System.out.println("Score decreased for patient " + $fatigue.patientId + " due to fatigue.");
+end
+
+rule "Decrease scoreType if patient has progressive respiratory distress"
+salience 10
+dialect "mvel"
+when
+    $patient: Patient(progressiveRespiratoryDistress == true)
+    $diagnose: Diagnose(patientId == $patient.id, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreType($diagnose.getScoreType() - 1)
+    }
+    System.out.println("Score decreases for patient " + $patient.id + " due to progressive respiratory distress.");
+end
+
+
+rule "Increase scoreSeverity if patient has confusion"
+salience 10
+dialect "mvel"
+when
+    $confusion: Confusion(confusion == true)
+    $diagnose: Diagnose(patientId == $confusion.patientId, pneumonia == true)
+then
+    modify($diagnose) {
+        setScoreSeverity($diagnose.getScoreSeverity() + 1)
+    }
+    System.out.println("ScoreSeverity increased for patient " + $confusion.patientId + " due to confusion.");
+end
+
+rule "Increase scoreSeverity if patient has uremia"
+salience 10
+dialect "mvel"
+when
+    $uremia: Uremia(patientId != null, uremia == true)
+    $diagnose: Diagnose(patientId == $uremia.patientId)
+then
+    modify($diagnose) {
+        setScoreSeverity($diagnose.getScoreSeverity() + 1)
+    }
+    System.out.println("ScoreSeverity increased for patient " + $uremia.patientId + " due to uremia.");
+end
+
+rule "Increase scoreSeverity if patient has tachypnea"
+salience 10
+dialect "mvel"
+when
+    $tachypnea: Tachypnea(patientId != null, tachypnea == true)
+    $diagnose: Diagnose(patientId == $tachypnea.patientId)
+then
+    modify($diagnose) {
+        setScoreSeverity($diagnose.getScoreSeverity() + 1)
+    }
+    System.out.println("ScoreSeverity increased for patient " + $tachypnea.patientId + " due to tachypnea.");
+end
+
+rule "Increase scoreSeverity if patient has hypotension"
+salience 10
+dialect "mvel"
+when
+    $hypotension: Hypotension(patientId != null, hypotension == true)
+    $diagnose: Diagnose(patientId == $hypotension.patientId)
+then
+    modify($diagnose) {
+        setScoreSeverity($diagnose.getScoreSeverity() + 1)
+    }
+    System.out.println("ScoreSeverity increased for patient " + $hypotension.patientId + " due to hypotension.");
+end
+
+rule "Increase scoreSeverity for patients over 65"
+salience 20
+dialect "mvel"
+when
+    $patient: Patient(age > 65)
+    $diagnose: Diagnose(patientId == $patient.id)
+then
+    modify($diagnose) {
+        setScoreSeverity($diagnose.getScoreSeverity() + 1)
+    }
+    System.out.println("ScoreSeverity increased for patient " + $patient.id + " due to age > 65.");
+end
+
+
+rule "Mark bacterial pneumonia if scoreType is greater than 0"
+salience 10
+dialect "mvel"
+when
+    $diagnose: Diagnose(scoreType > 0)
+then
+    modify($diagnose) {
+        setType(Diagnose.Type.BACTERIAL)
+    }
+    System.out.println("Bacterial pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreType greater than 0.");
+end
+
+rule "Mark viral pneumonia if scoreType is lower than 0"
+salience 5
+dialect "mvel"
+when
+    $diagnose: Diagnose(scoreType < 0)
+then
+    modify($diagnose) {
+        setType(Diagnose.Type.VIRAL)
+    }
+    System.out.println("Viral pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreType lower than 0.");
+end
+
+rule "Mark high severity pneumonia if scoreSeverity is greater than 2"
+salience 10
+dialect "mvel"
+when
+    $diagnose: Diagnose(scoreSeverity > 2)
+then
+    modify($diagnose) {
+        setSeverity(Diagnose.Severity.HIGH)
+    }
+    System.out.println("High severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity greater than 2.");
+end
+
+rule "Mark medium severity pneumonia if scoreSeverity is = 2"
+salience 10
+dialect "mvel"
+when
+    $diagnose: Diagnose(scoreSeverity == 2)
+then
+    modify($diagnose) {
+        setSeverity(Diagnose.Severity.MEDIUM)
+    }
+    System.out.println("Medium severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity equals to 2.");
+end
+
+rule "Mark low severity pneumonia if scoreSeverity is < 2"
+salience 10
+dialect "mvel"
+when
+    $diagnose: Diagnose(scoreSeverity < 2)
+then
+    modify($diagnose) {
+        setSeverity(Diagnose.Severity.LOW)
+    }
+    System.out.println("Low severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity lower than 2.");
+end

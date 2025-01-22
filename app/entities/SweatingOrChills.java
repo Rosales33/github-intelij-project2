@@ -4,7 +4,8 @@ public class SweatingOrChills {
     private int patientId;
     private boolean sweatingOrChills;
 
-    public SweatingOrChills(boolean sweatingOrChills) {
+    public SweatingOrChills(int patientId, boolean sweatingOrChills) {
+        this.patientId = patientId;
         this.sweatingOrChills = sweatingOrChills;
     }
 

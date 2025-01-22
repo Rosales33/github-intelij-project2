@@ -4,7 +4,8 @@ public class Cyanosis {
     private int patientId;
     private boolean cyanosis;
 
-    public Cyanosis(boolean cyanosis) {
+    public Cyanosis(int patientId, boolean cyanosis) {
+        this.patientId = patientId;
         this.cyanosis = cyanosis;
     }
 

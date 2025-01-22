@@ -11,7 +11,7 @@ public class PatientService {
     private static PatientService instance;
     private Map<Integer, FullPatient> patients = new HashMap<>();
 
-    public static PatientService getInstance() {
+    public static PatientService getInstance() { //esto igual para una ksession
         if (instance == null) {
             instance = new PatientService();
         }
@@ -33,8 +33,7 @@ public class PatientService {
         return new HashSet<>(patients.values());
     }
 
-    public FullPatient updatePatient(FullPatient patient) {
-        int id = patient.getId();
+    public FullPatient updatePatient(FullPatient patient, int id) {
         if (patients.containsKey(id)) {
             patients.put(id, patient);
             return patient;

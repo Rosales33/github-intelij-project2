@@ -6,7 +6,8 @@ public class Cough {
     private boolean productive;
     private boolean foulSmellingOrPorulentSputum;
 
-    public Cough(boolean cough, boolean productive, boolean foulSmellingOrPorulentSputum) {
+    public Cough(int patientId, boolean cough, boolean productive, boolean foulSmellingOrPorulentSputum) {
+        this.patientId = patientId;
         this.cough = cough;
         this.productive = productive;
         this.foulSmellingOrPorulentSputum = foulSmellingOrPorulentSputum;

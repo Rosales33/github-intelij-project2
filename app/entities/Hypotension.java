@@ -4,7 +4,8 @@ public class Hypotension {
     private int patientId;
     private boolean hypotension;
 
-    public Hypotension(boolean hypotension) {
+    public Hypotension(int patientId, boolean hypotension) {
+        this.patientId = patientId;
         this.hypotension = hypotension;
     }
 

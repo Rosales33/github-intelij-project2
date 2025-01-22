@@ -4,7 +4,8 @@ public class Tachycardia {
     private int patientId;
     private boolean tachycardia;
 
-    public Tachycardia(boolean tachycardia) {
+    public Tachycardia(int patientId, boolean tachycardia) {
+        this.patientId = patientId;
         this.tachycardia = tachycardia;
     }
 

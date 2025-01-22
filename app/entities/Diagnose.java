@@ -9,6 +9,10 @@ public class Diagnose {
     private int scoreSeverity;
     private Severity severity;
 
+    public Diagnose(int patientId) {
+        this.patientId = patientId;
+    }
+
     public Diagnose(int patientId, int score, boolean pneumonia, int scoreType, Type type) {
         this.patientId = patientId;
         this.score = score;

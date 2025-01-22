@@ -4,7 +4,8 @@ public class Uremia {
     private int patientId;
     private boolean uremia;
 
-    public Uremia(boolean uremia) {
+    public Uremia(int patientId, boolean uremia) {
+        this.patientId = patientId;
         this.uremia = uremia;
     }
 
