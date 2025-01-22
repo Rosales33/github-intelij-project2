@@ -1,7 +1,8 @@
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
 
-    <kbase name="kbase" packages="drools">
-        <ksession name="TUSREGLAS"/>
+
+    <kbase name="pneumonia" packages="drools">
+        <ksession name="pneumoniaKS"/>
     </kbase>
 
 
