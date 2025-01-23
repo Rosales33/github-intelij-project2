@@ -40,6 +40,38 @@ public class FullPatient {
     private int scoreSeverity;
     private Severity severity;
 
+    public FullPatient(int id, int age, Sex sex, int temperature, boolean neurologicalConditionAffectingSwallowing, boolean underlyingHeartOrPulmonaryConditions, boolean hospitalized, boolean smoker, boolean pregnant, boolean weakenedInmuneSystem, Progression progression, boolean progressiveRespiratoryDistress, boolean chestPain, boolean confusion, boolean cough, boolean productive, boolean foulSmellingOrPorulentSputum, boolean cyanosis, boolean dyspnea, boolean fatigue, boolean fever, boolean elevatedFever, boolean hypotension, boolean lossOfAppetite, boolean myalgia, boolean sweatingOrChills, boolean tachycardia, boolean tachypnea, boolean uremia) {
+        this.id = id;
+        this.age = age;
+        this.sex = sex;
+        this.temperature = temperature;
+        this.neurologicalConditionAffectingSwallowing = neurologicalConditionAffectingSwallowing;
+        this.underlyingHeartOrPulmonaryConditions = underlyingHeartOrPulmonaryConditions;
+        this.hospitalized = hospitalized;
+        this.smoker = smoker;
+        this.pregnant = pregnant;
+        this.weakenedInmuneSystem = weakenedInmuneSystem;
+        this.progression = progression;
+        this.progressiveRespiratoryDistress = progressiveRespiratoryDistress;
+        this.chestPain = chestPain;
+        this.confusion = confusion;
+        this.cough = cough;
+        this.productive = productive;
+        this.foulSmellingOrPorulentSputum = foulSmellingOrPorulentSputum;
+        this.cyanosis = cyanosis;
+        this.dyspnea = dyspnea;
+        this.fatigue = fatigue;
+        this.fever = fever;
+        this.elevatedFever = elevatedFever;
+        this.hypotension = hypotension;
+        this.lossOfAppetite = lossOfAppetite;
+        this.myalgia = myalgia;
+        this.sweatingOrChills = sweatingOrChills;
+        this.tachycardia = tachycardia;
+        this.tachypnea = tachypnea;
+        this.uremia = uremia;
+    }
+
     public FullPatient(int age, Sex sex, int temperature, boolean neurologicalConditionAffectingSwallowing, boolean underlyingHeartOrPulmonaryConditions, boolean hospitalized, boolean smoker, boolean pregnant, boolean weakenedInmuneSystem, Progression progression, boolean progressiveRespiratoryDistress, boolean chestPain, boolean confusion, boolean cough, boolean productive, boolean foulSmellingOrPorulentSputum, boolean cyanosis, boolean dyspnea, boolean fatigue, boolean fever, boolean elevatedFever, boolean hypotension, boolean lossOfAppetite, boolean myalgia, boolean sweatingOrChills, boolean tachycardia, boolean tachypnea, boolean uremia) {
         this.age = age;
         this.sex = sex;

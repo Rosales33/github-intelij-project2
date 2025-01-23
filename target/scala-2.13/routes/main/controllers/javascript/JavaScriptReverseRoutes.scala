@@ -82,12 +82,22 @@ package controllers.javascript {
     }
 
   
+    // @LINE:27
+    def createPatientPrueba: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.PatientController.createPatientPrueba",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/instance"})
+        }
+      """
+    )
+  
     // @LINE:19
     def listPatients: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.listPatients",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patient"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients"})
         }
       """
     )
@@ -97,7 +107,7 @@ package controllers.javascript {
       "controllers.PatientController.delete",
       """
         function(id0) {
-          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "patient/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
         }
       """
     )
@@ -106,8 +116,8 @@ package controllers.javascript {
     def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.update",
       """
-        function() {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "patient"})
+        function(id0) {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
         }
       """
     )
@@ -117,7 +127,7 @@ package controllers.javascript {
       "controllers.PatientController.retrieve",
       """
         function(id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patient/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
         }
       """
     )
@@ -127,7 +137,7 @@ package controllers.javascript {
       "controllers.PatientController.create",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "patient"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "patients"})
         }
       """
     )

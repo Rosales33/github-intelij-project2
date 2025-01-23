@@ -31,19 +31,19 @@ public class DroolsController extends Controller {
         Diagnose diagnose = new Diagnose(fullPatient.getId());
 
         Fever fever = new Fever(fullPatient.getId(), fullPatient.isFever(), fullPatient.isElevatedFever());
-        Cough cough = new Cough(fullPatient.getId(),true, true, true);
-        Cyanosis cyanosis = new Cyanosis(fullPatient.getId(),true);
-        Dyspnea dyspnea = new Dyspnea(fullPatient.getId(),true);
-        Fatigue fatigue = new Fatigue(fullPatient.getId(),true);
-        LossOfAppetite lossOfAppetite = new LossOfAppetite(fullPatient.getId(),true);
-        SweatingOrChills sweatingOrChills = new SweatingOrChills(fullPatient.getId(),true);
-        Tachycardia tachycardia = new Tachycardia(fullPatient.getId(),true);
-        ChestPain chestPain = new ChestPain(fullPatient.getId(),true);
-        Confusion confusion = new Confusion(fullPatient.getId(),true);
-        Myalgia myalgia = new Myalgia(fullPatient.getId(),true);
-        Uremia uremia = new Uremia(fullPatient.getId(),false);
-        Tachypnea tachypnea = new Tachypnea(fullPatient.getId(),false);
-        Hypotension hypotension = new Hypotension(fullPatient.getId(),false);
+        Cough cough = new Cough(fullPatient.getId(),fullPatient.isCough(), fullPatient.isProductive(), fullPatient.isFoulSmellingOrPorulentSputum());
+        Cyanosis cyanosis = new Cyanosis(fullPatient.getId(), fullPatient.isCyanosis());
+        Dyspnea dyspnea = new Dyspnea(fullPatient.getId(), fullPatient.isDyspnea());
+        Fatigue fatigue = new Fatigue(fullPatient.getId(), fullPatient.isFatigue());
+        LossOfAppetite lossOfAppetite = new LossOfAppetite(fullPatient.getId(), fullPatient.isLossOfAppetite());
+        SweatingOrChills sweatingOrChills = new SweatingOrChills(fullPatient.getId(), fullPatient.isSweatingOrChills());
+        Tachycardia tachycardia = new Tachycardia(fullPatient.getId(), fullPatient.isTachycardia());
+        ChestPain chestPain = new ChestPain(fullPatient.getId(), fullPatient.isChestPain());
+        Confusion confusion = new Confusion(fullPatient.getId(), fullPatient.isConfusion());
+        Myalgia myalgia = new Myalgia(fullPatient.getId(), fullPatient.isMyalgia());
+        Uremia uremia = new Uremia(fullPatient.getId(), fullPatient.isUremia());
+        Tachypnea tachypnea = new Tachypnea(fullPatient.getId(), fullPatient.isTachypnea());
+        Hypotension hypotension = new Hypotension(fullPatient.getId(), fullPatient.isHypotension());
 
         //execute(kc);
         //KieSession ksession = kc.newKieSession("pneumoniaKS");

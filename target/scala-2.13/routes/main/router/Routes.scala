@@ -58,12 +58,13 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.create(request:Request)"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee""", """controllers.EmployeeController.update(request:Request)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """employee/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.delete(id:Int)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient""", """controllers.PatientController.listPatients()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient/""" + "$" + """id<[^/]+>""", """controllers.PatientController.retrieve(id:Int)"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient""", """controllers.PatientController.create(request:Request)"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient""", """controllers.PatientController.update(request:Request)"""),
-    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient/""" + "$" + """id<[^/]+>""", """controllers.PatientController.delete(id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients""", """controllers.PatientController.listPatients()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>""", """controllers.PatientController.retrieve(id:Int)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients""", """controllers.PatientController.create(request:Request)"""),
+    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>""", """controllers.PatientController.update(request:Request, id:Int)"""),
+    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>""", """controllers.PatientController.delete(id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>/diagnose""", """controllers.DroolsController.diagnosePatient(id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/instance""", """controllers.PatientController.createPatientPrueba()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -204,7 +205,7 @@ class Routes(
 
   // @LINE:19
   private[this] lazy val controllers_PatientController_listPatients7_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients")))
   )
   private[this] lazy val controllers_PatientController_listPatients7_invoker = createInvoker(
     PatientController_0.listPatients(),
@@ -214,7 +215,7 @@ class Routes(
       "listPatients",
       Nil,
       "GET",
-      this.prefix + """patient""",
+      this.prefix + """patients""",
       """ APIs in PatientController""",
       Seq()
     )
@@ -222,7 +223,7 @@ class Routes(
 
   // @LINE:20
   private[this] lazy val controllers_PatientController_retrieve8_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient/"), DynamicPart("id", """[^/]+""",true)))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients/"), DynamicPart("id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_PatientController_retrieve8_invoker = createInvoker(
     PatientController_0.retrieve(fakeValue[Int]),
@@ -232,7 +233,7 @@ class Routes(
       "retrieve",
       Seq(classOf[Int]),
       "GET",
-      this.prefix + """patient/""" + "$" + """id<[^/]+>""",
+      this.prefix + """patients/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
@@ -240,7 +241,7 @@ class Routes(
 
   // @LINE:21
   private[this] lazy val controllers_PatientController_create9_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients")))
   )
   private[this] lazy val controllers_PatientController_create9_invoker = createInvoker(
     
@@ -252,7 +253,7 @@ class Routes(
       "create",
       Seq(classOf[play.mvc.Http.Request]),
       "POST",
-      this.prefix + """patient""",
+      this.prefix + """patients""",
       """""",
       Seq()
     )
@@ -260,19 +261,19 @@ class Routes(
 
   // @LINE:22
   private[this] lazy val controllers_PatientController_update10_route = Route("PUT",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients/"), DynamicPart("id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_PatientController_update10_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      PatientController_0.update(fakeValue[play.mvc.Http.Request]),
+      PatientController_0.update(fakeValue[play.mvc.Http.Request], fakeValue[Int]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.PatientController",
       "update",
-      Seq(classOf[play.mvc.Http.Request]),
+      Seq(classOf[play.mvc.Http.Request], classOf[Int]),
       "PUT",
-      this.prefix + """patient""",
+      this.prefix + """patients/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
@@ -280,7 +281,7 @@ class Routes(
 
   // @LINE:23
   private[this] lazy val controllers_PatientController_delete11_route = Route("DELETE",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient/"), DynamicPart("id", """[^/]+""",true)))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients/"), DynamicPart("id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_PatientController_delete11_invoker = createInvoker(
     PatientController_0.delete(fakeValue[Int]),
@@ -290,7 +291,7 @@ class Routes(
       "delete",
       Seq(classOf[Int]),
       "DELETE",
-      this.prefix + """patient/""" + "$" + """id<[^/]+>""",
+      this.prefix + """patients/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
@@ -314,11 +315,29 @@ class Routes(
     )
   )
 
-  // @LINE:28
-  private[this] lazy val controllers_Assets_versioned13_route = Route("GET",
+  // @LINE:27
+  private[this] lazy val controllers_PatientController_createPatientPrueba13_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients/instance")))
+  )
+  private[this] lazy val controllers_PatientController_createPatientPrueba13_invoker = createInvoker(
+    PatientController_0.createPatientPrueba(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.PatientController",
+      "createPatientPrueba",
+      Nil,
+      "GET",
+      this.prefix + """patients/instance""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:30
+  private[this] lazy val controllers_Assets_versioned14_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned13_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned14_invoker = createInvoker(
     Assets_3.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -400,9 +419,9 @@ class Routes(
   
     // @LINE:22
     case controllers_PatientController_update10_route(params@_) =>
-      call { 
+      call(params.fromPath[Int]("id", None)) { (id) =>
         controllers_PatientController_update10_invoker.call(
-          req => PatientController_0.update(req))
+          req => PatientController_0.update(req, id))
       }
   
     // @LINE:23
@@ -417,10 +436,16 @@ class Routes(
         controllers_DroolsController_diagnosePatient12_invoker.call(DroolsController_2.diagnosePatient(id))
       }
   
-    // @LINE:28
-    case controllers_Assets_versioned13_route(params@_) =>
+    // @LINE:27
+    case controllers_PatientController_createPatientPrueba13_route(params@_) =>
+      call { 
+        controllers_PatientController_createPatientPrueba13_invoker.call(PatientController_0.createPatientPrueba())
+      }
+  
+    // @LINE:30
+    case controllers_Assets_versioned14_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned13_invoker.call(Assets_3.versioned(path, file))
+        controllers_Assets_versioned14_invoker.call(Assets_3.versioned(path, file))
       }
   }
 }

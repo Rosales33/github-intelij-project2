@@ -70,34 +70,40 @@ package controllers {
     }
 
   
+    // @LINE:27
+    def createPatientPrueba(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "patients/instance")
+    }
+  
     // @LINE:19
     def listPatients(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "patient")
+      Call("GET", _prefix + { _defaultPrefix } + "patients")
     }
   
     // @LINE:23
     def delete(id:Int): Call = {
       
-      Call("DELETE", _prefix + { _defaultPrefix } + "patient/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
+      Call("DELETE", _prefix + { _defaultPrefix } + "patients/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
     }
   
     // @LINE:22
-    def update(): Call = {
+    def update(id:Int): Call = {
       
-      Call("PUT", _prefix + { _defaultPrefix } + "patient")
+      Call("PUT", _prefix + { _defaultPrefix } + "patients/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
     }
   
     // @LINE:20
     def retrieve(id:Int): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "patient/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
+      Call("GET", _prefix + { _defaultPrefix } + "patients/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("id", id)))
     }
   
     // @LINE:21
     def create(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "patient")
+      Call("POST", _prefix + { _defaultPrefix } + "patients")
     }
   
   }

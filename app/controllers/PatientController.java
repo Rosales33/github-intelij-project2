@@ -75,7 +75,7 @@ public class PatientController extends Controller{
     }
 
     public Result createPatientPrueba() {
-        FullPatient patient = new FullPatient(82, Sex.FEMALE,39,true,true,true,true,true,true, Progression.RAPID,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true);
+        FullPatient patient = new FullPatient(1,82, Sex.FEMALE,39,true,true,true,true,true,true, Progression.RAPID,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true);
         JsonNode jsonObject = Json.toJson(patient);
         return created(ApplicationUtil.createResponse(jsonObject, true));
     }
