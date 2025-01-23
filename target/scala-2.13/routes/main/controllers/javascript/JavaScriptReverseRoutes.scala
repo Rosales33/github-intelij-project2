@@ -87,7 +87,7 @@ package controllers.javascript {
       "controllers.PatientController.createPatientPrueba",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/instance"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patient/instance"})
         }
       """
     )

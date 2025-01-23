@@ -76,12 +76,4 @@ public class Diagnose {
     public void setSeverity(Severity severity) {
         this.severity = severity;
     }
-
-    public enum Type{
-        BACTERIAL, VIRAL;
-    }
-
-    public enum Severity{
-        HIGH, MEDIUM, LOW;
-    }
 }

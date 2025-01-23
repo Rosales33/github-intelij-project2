@@ -24,7 +24,7 @@ DELETE  /patients/:id          controllers.PatientController.delete(id:Int)
 
 GET /patients/:id/diagnose    controllers.DroolsController.diagnosePatient(id:Int)
 
-GET /patients/instance         controllers.PatientController.createPatientPrueba()
+GET /patient/instance         controllers.PatientController.createPatientPrueba()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

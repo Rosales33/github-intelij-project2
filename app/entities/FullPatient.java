@@ -40,6 +40,9 @@ public class FullPatient {
     private int scoreSeverity;
     private Severity severity;
 
+    public FullPatient() {
+    }
+
     public FullPatient(int id, int age, Sex sex, int temperature, boolean neurologicalConditionAffectingSwallowing, boolean underlyingHeartOrPulmonaryConditions, boolean hospitalized, boolean smoker, boolean pregnant, boolean weakenedInmuneSystem, Progression progression, boolean progressiveRespiratoryDistress, boolean chestPain, boolean confusion, boolean cough, boolean productive, boolean foulSmellingOrPorulentSputum, boolean cyanosis, boolean dyspnea, boolean fatigue, boolean fever, boolean elevatedFever, boolean hypotension, boolean lossOfAppetite, boolean myalgia, boolean sweatingOrChills, boolean tachycardia, boolean tachypnea, boolean uremia) {
         this.id = id;
         this.age = age;

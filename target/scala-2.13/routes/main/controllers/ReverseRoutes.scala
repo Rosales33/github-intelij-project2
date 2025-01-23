@@ -73,7 +73,7 @@ package controllers {
     // @LINE:27
     def createPatientPrueba(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "patients/instance")
+      Call("GET", _prefix + { _defaultPrefix } + "patient/instance")
     }
   
     // @LINE:19

@@ -64,7 +64,7 @@ class Routes(
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>""", """controllers.PatientController.update(request:Request, id:Int)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>""", """controllers.PatientController.delete(id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/""" + "$" + """id<[^/]+>/diagnose""", """controllers.DroolsController.diagnosePatient(id:Int)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patients/instance""", """controllers.PatientController.createPatientPrueba()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """patient/instance""", """controllers.PatientController.createPatientPrueba()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -317,7 +317,7 @@ class Routes(
 
   // @LINE:27
   private[this] lazy val controllers_PatientController_createPatientPrueba13_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patients/instance")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("patient/instance")))
   )
   private[this] lazy val controllers_PatientController_createPatientPrueba13_invoker = createInvoker(
     PatientController_0.createPatientPrueba(),
@@ -327,7 +327,7 @@ class Routes(
       "createPatientPrueba",
       Nil,
       "GET",
-      this.prefix + """patients/instance""",
+      this.prefix + """patient/instance""",
       """""",
       Seq()
     )

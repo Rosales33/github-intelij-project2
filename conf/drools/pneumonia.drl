@@ -14,6 +14,10 @@ import entities.LossOfAppetite
 import entities.Myalgia
 import entities.SweatingOrChills
 import entities.Tachycardia
+import entities.Sex
+import entities.Progression
+import entities.Severity
+import entities.Type
 
 rule "Set fever if temperature is greater than 37"
 salience 25
@@ -71,7 +75,7 @@ rule "Increase score if patient is pregnant and female"
 salience 20
 dialect "mvel"
 when
-    $patient: Patient(pregnant == true, sex == Patient.Sex.FEMALE)
+    $patient: Patient(pregnant == true, sex == Sex.FEMALE)
     $diagnose: Diagnose(patientId == $patient.id)
 then
     modify($diagnose) {
@@ -332,7 +336,7 @@ rule "Increase scoreType if patient has rapid progression of symptoms"
 salience 10
 dialect "mvel"
 when
-    $patient: Patient(progression == Patient.Progression.RAPID)
+    $patient: Patient(progression == Progression.RAPID)
     $diagnose: Diagnose(patientId == $patient.id, pneumonia == true)
 then
     modify($diagnose) {
@@ -345,7 +349,7 @@ rule "Decrease scoreType if patient has gradual progression of symptoms"
 salience 10
 dialect "mvel"
 when
-    $patient: Patient(progression == Patient.Progression.GRADUAL)
+    $patient: Patient(progression == Progression.GRADUAL)
     $diagnose: Diagnose(patientId == $patient.id, pneumonia == true)
 then
     modify($diagnose) {
@@ -493,7 +497,7 @@ when
     $diagnose: Diagnose(scoreType > 0)
 then
     modify($diagnose) {
-        setType(Diagnose.Type.BACTERIAL)
+        setType(Type.BACTERIAL)
     }
     System.out.println("Bacterial pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreType greater than 0.");
 end
@@ -505,7 +509,7 @@ when
     $diagnose: Diagnose(scoreType < 0)
 then
     modify($diagnose) {
-        setType(Diagnose.Type.VIRAL)
+        setType(Type.VIRAL)
     }
     System.out.println("Viral pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreType lower than 0.");
 end
@@ -517,7 +521,7 @@ when
     $diagnose: Diagnose(scoreSeverity > 2)
 then
     modify($diagnose) {
-        setSeverity(Diagnose.Severity.HIGH)
+        setSeverity(Severity.HIGH)
     }
     System.out.println("High severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity greater than 2.");
 end
@@ -529,7 +533,7 @@ when
     $diagnose: Diagnose(scoreSeverity == 2)
 then
     modify($diagnose) {
-        setSeverity(Diagnose.Severity.MEDIUM)
+        setSeverity(Severity.MEDIUM)
     }
     System.out.println("Medium severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity equals to 2.");
 end
@@ -541,7 +545,7 @@ when
     $diagnose: Diagnose(scoreSeverity < 2)
 then
     modify($diagnose) {
-        setSeverity(Diagnose.Severity.LOW)
+        setSeverity(Severity.LOW)
     }
     System.out.println("Low severity pneumonia marked for patient " + $diagnose.getPatientId() + " due to scoreSeverity lower than 2.");
 end
