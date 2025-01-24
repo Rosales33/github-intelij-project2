@@ -1,3 +1,4 @@
+POST    /patients
 {
     "status": true,
     "response": {
@@ -36,5 +37,47 @@
         "type": null,
         "scoreSeverity": 0,
         "severity": null
+    }
+}
+
+GET /patients/:id/diagnose
+{
+    "status": true,
+    "response": {
+        "id": 1,
+        "age": 82,
+        "sex": "FEMALE",
+        "temperature": 39,
+        "neurologicalConditionAffectingSwallowing": true,
+        "underlyingHeartOrPulmonaryConditions": true,
+        "hospitalized": true,
+        "smoker": true,
+        "pregnant": true,
+        "weakenedInmuneSystem": true,
+        "progression": "RAPID",
+        "progressiveRespiratoryDistress": true,
+        "chestPain": true,
+        "confusion": true,
+        "cough": true,
+        "productive": true,
+        "foulSmellingOrPorulentSputum": true,
+        "cyanosis": true,
+        "dyspnea": true,
+        "fatigue": true,
+        "fever": true,
+        "elevatedFever": true,
+        "hypotension": true,
+        "lossOfAppetite": true,
+        "myalgia": true,
+        "sweatingOrChills": true,
+        "tachycardia": true,
+        "tachypnea": true,
+        "uremia": true,
+        "score": 21,
+        "pneumonia": true,
+        "scoreType": 7,
+        "type": "BACTERIAL",
+        "scoreSeverity": 5,
+        "severity": "HIGH"
     }
 }

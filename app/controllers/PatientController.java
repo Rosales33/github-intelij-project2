@@ -39,7 +39,7 @@ public class PatientController extends Controller{
         FullPatient patient = PatientService.getInstance().updatePatient(Json.fromJson(json, FullPatient.class), id);
         logger.debug("In PatientController.update(), patient is: {}",patient);
         if (patient == null) {
-            return notFound(ApplicationUtil.createResponse("Employee not found", false));
+            return notFound(ApplicationUtil.createResponse("Patient not found", false));
         }
 
         JsonNode jsonObject = Json.toJson(patient);

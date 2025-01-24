@@ -1,11 +1,13 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import entities.FullPatient;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import play.libs.Json;
 import services.DroolsService;
 import services.PatientService;
 import utils.ApplicationUtil;
@@ -70,8 +72,17 @@ public class DroolsController extends Controller {
         ksession.dispose();
 
         //añadir los atributos de diagonse a full patient y actualizarlo (update)
+        fullPatient.setScore(diagnose.getScore());
+        fullPatient.setPneumonia(diagnose.isPneumonia());
+        fullPatient.setScoreSeverity(diagnose.getScoreSeverity());
+        fullPatient.setSeverity(diagnose.getSeverity());
+        fullPatient.setScoreType(diagnose.getScoreType());
+        fullPatient.setType(diagnose.getType());
 
-        return ok(ApplicationUtil.createResponse(patient, true));
+        FullPatient fullPatientWithEverything = PatientService.getInstance().updatePatient(fullPatient, id);
+
+        JsonNode jsonObject = Json.toJson(fullPatientWithEverything);
+        return ok(ApplicationUtil.createResponse(jsonObject, true));
     }
 
     public static void execute(KieContainer kc) {
