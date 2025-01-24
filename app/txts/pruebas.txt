@@ -40,7 +40,7 @@ POST    /patients
     }
 }
 
-GET /patients/:id/diagnose
+GET   /patients/:id/diagnose
 {
     "status": true,
     "response": {

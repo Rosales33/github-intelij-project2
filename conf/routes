@@ -22,7 +22,7 @@ POST    /patients              controllers.PatientController.create(request:Requ
 PUT     /patients/:id          controllers.PatientController.update(request:Request,id:Int)
 DELETE  /patients/:id          controllers.PatientController.delete(id:Int)
 
-GET /patients/:id/diagnose    controllers.DroolsController.diagnosePatient(id:Int)
+GET   /patients/:id/diagnose    controllers.DroolsController.diagnosePatient(id:Int)
 
 GET /patient/instance         controllers.PatientController.createPatientPrueba()
 

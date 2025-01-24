@@ -17,8 +17,6 @@ import entities.*;
 
 public class DroolsController extends Controller {
 
-    //private static final Logger logger = LoggerFactory.getLogger("controller");
-
     public Result diagnosePatient(int id) {
         //KieServices ks = KieServices.Factory.get();
         //KieContainer kc = ks.getKieClasspathContainer();
@@ -47,7 +45,6 @@ public class DroolsController extends Controller {
         Tachypnea tachypnea = new Tachypnea(fullPatient.getId(), fullPatient.isTachypnea());
         Hypotension hypotension = new Hypotension(fullPatient.getId(), fullPatient.isHypotension());
 
-        //execute(kc);
         //KieSession ksession = kc.newKieSession("pneumoniaKS");
         KieSession ksession = DroolsService.getInstance();
 
@@ -83,24 +80,5 @@ public class DroolsController extends Controller {
 
         JsonNode jsonObject = Json.toJson(fullPatientWithEverything);
         return ok(ApplicationUtil.createResponse(jsonObject, true));
-    }
-
-    public static void execute(KieContainer kc) {
-        // From the container, a session is created based on
-        // its definition and configuration in the META-INF/kmodule.xml file
-        //KieSession ksession = kc.newKieSession("pneumoniaKS"); //lo de despues del igual en droolsServices
-
-        // Once the session is created, the application can interact with it
-
-        // To set up a ThreadedFileLogger, so that the audit view reflects events whilst debugging,
-        // uncomment the next line
-        // KieRuntimeLogger logger = ks.getLoggers().newThreadedFileLogger( ksession, "./helloworld", 1000 );
-        // The application can insert facts into the session
-
-        // and fire the rules
-        //ksession.fireAllRules();
-
-        // and then dispose the session
-        //ksession.dispose();
     }
 }
