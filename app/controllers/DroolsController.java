@@ -30,7 +30,7 @@ public class DroolsController extends Controller {
 
         Diagnose diagnose = new Diagnose(fullPatient.getId());
 
-        Fever fever = new Fever(fullPatient.getId(), fullPatient.isFever(), fullPatient.isElevatedFever());
+        Fever fever = new Fever(fullPatient.getId());
         Cough cough = new Cough(fullPatient.getId(),fullPatient.isCough(), fullPatient.isProductive(), fullPatient.isFoulSmellingOrPorulentSputum());
         Cyanosis cyanosis = new Cyanosis(fullPatient.getId(), fullPatient.isCyanosis());
         Dyspnea dyspnea = new Dyspnea(fullPatient.getId(), fullPatient.isDyspnea());
@@ -67,6 +67,9 @@ public class DroolsController extends Controller {
 
         ksession.fireAllRules();
         ksession.dispose();
+
+        fullPatient.setFever(fever.isFever());
+        fullPatient.setElevatedFever(fever.getElevatedFever());
 
         //añadir los atributos de diagonse a full patient y actualizarlo (update)
         fullPatient.setScore(diagnose.getScore());

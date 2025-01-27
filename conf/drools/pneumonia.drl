@@ -257,7 +257,7 @@ rule "Mark pneumonia if score is greater than 12"
 salience 15
 dialect "mvel"
 when
-    $diagnose: Diagnose(score > 12)
+    $diagnose: Diagnose(score > 11)
 then
     modify($diagnose) {
         setPneumonia(true)

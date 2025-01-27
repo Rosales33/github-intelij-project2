@@ -10,6 +10,26 @@ import _root_.play.libs.F
 // @LINE:6
 package controllers.javascript {
 
+  // @LINE:6
+  class ReverseHomeController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:6
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
   // @LINE:9
   class ReverseAssets(_prefix: => String) {
 
@@ -34,47 +54,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:25
-  class ReverseDroolsController(_prefix: => String) {
-
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:25
-    def diagnosePatient: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DroolsController.diagnosePatient",
-      """
-        function(id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0)) + "/diagnose"})
-        }
-      """
-    )
-  
-  }
-
-  // @LINE:6
-  class ReverseHomeController(_prefix: => String) {
-
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:6
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
-  }
-
-  // @LINE:19
+  // @LINE:12
   class ReversePatientController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -82,7 +62,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:27
+    // @LINE:20
     def createPatientPrueba: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.createPatientPrueba",
       """
@@ -92,7 +72,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:19
+    // @LINE:12
     def listPatients: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.listPatients",
       """
@@ -102,7 +82,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:23
+    // @LINE:16
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.delete",
       """
@@ -112,7 +92,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:22
+    // @LINE:15
     def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.update",
       """
@@ -122,7 +102,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:20
+    // @LINE:13
     def retrieve: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.retrieve",
       """
@@ -132,7 +112,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:21
+    // @LINE:14
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PatientController.create",
       """
@@ -144,60 +124,20 @@ package controllers.javascript {
   
   }
 
-  // @LINE:12
-  class ReverseEmployeeController(_prefix: => String) {
+  // @LINE:18
+  class ReverseDroolsController(_prefix: => String) {
 
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:16
-    def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.delete",
+    // @LINE:18
+    def diagnosePatient: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.DroolsController.diagnosePatient",
       """
         function(id0) {
-          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "employee/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
-        }
-      """
-    )
-  
-    // @LINE:12
-    def listEmployees: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.listEmployees",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
-        }
-      """
-    )
-  
-    // @LINE:15
-    def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.update",
-      """
-        function() {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
-        }
-      """
-    )
-  
-    // @LINE:13
-    def retrieve: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.retrieve",
-      """
-        function(id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "employee/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0))})
-        }
-      """
-    )
-  
-    // @LINE:14
-    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.EmployeeController.create",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "employee"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "patients/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("id", id0)) + "/diagnose"})
         }
       """
     )
