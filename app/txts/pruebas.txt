@@ -22,8 +22,6 @@ POST    /patients
         "cyanosis": true,
         "dyspnea": true,
         "fatigue": true,
-        "fever": true,
-        "elevatedFever": true,
         "hypotension": true,
         "lossOfAppetite": true,
         "myalgia": true,
