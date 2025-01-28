@@ -5,10 +5,7 @@ import entities.FullPatient;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import play.libs.Json;
-import services.DroolsService;
 import services.PatientService;
 import utils.ApplicationUtil;
 import play.mvc.Controller;
@@ -18,8 +15,8 @@ import entities.*;
 public class DroolsController extends Controller {
 
     public Result diagnosePatient(int id) {
-        //KieServices ks = KieServices.Factory.get();
-        //KieContainer kc = ks.getKieClasspathContainer();
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kc = ks.getKieClasspathContainer();
         FullPatient fullPatient = PatientService.getInstance().getPatient(id); //transformar a patient
 
         if (fullPatient == null) {
@@ -45,8 +42,7 @@ public class DroolsController extends Controller {
         Tachypnea tachypnea = new Tachypnea(fullPatient.getId(), fullPatient.isTachypnea());
         Hypotension hypotension = new Hypotension(fullPatient.getId(), fullPatient.isHypotension());
 
-        //KieSession ksession = kc.newKieSession("pneumoniaKS");
-        KieSession ksession = DroolsService.getInstance();
+        KieSession ksession = kc.newKieSession("pneumoniaKS");
 
         ksession.insert(patient);
         ksession.insert(diagnose);
@@ -70,8 +66,6 @@ public class DroolsController extends Controller {
 
         fullPatient.setFever(fever.isFever());
         fullPatient.setElevatedFever(fever.getElevatedFever());
-
-        //añadir los atributos de diagonse a full patient y actualizarlo (update)
         fullPatient.setScore(diagnose.getScore());
         fullPatient.setPneumonia(diagnose.isPneumonia());
         fullPatient.setScoreSeverity(diagnose.getScoreSeverity());
